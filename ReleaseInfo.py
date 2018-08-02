@@ -64,3 +64,6 @@ class MovieInfo():
     abstract = 'asdf '   #200字
     price = '0.2'
     poster = r'C:\Users\UCS-TREMBLE\Pictures\a065702a05c9beb2df939711a74b09f5_r.jpg'
+    sourcemp4 = r'E:\008-UCS业务、SVN\SVN\QMStest\合成\QMS测试V1.5.mp4'
+    paicihao = '123456789011'
+

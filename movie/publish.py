@@ -62,6 +62,8 @@ moviediscrib = ReleaseInfo.MovieInfo.moviediscrib
 abstract = ReleaseInfo.MovieInfo.abstract
 perprice = ReleaseInfo.MovieInfo.price
 poster = ReleaseInfo.MovieInfo.poster
+sourcefile = ReleaseInfo.MovieInfo.sourcemp4
+movienum = ReleaseInfo.MovieInfo.paicihao
 
 
 browser = webdriver.Chrome("../chromedriver.exe")
@@ -77,82 +79,94 @@ def login():
 login()
 sleep(2)
 browser.get('http://movmall.com/MVM/HTML/seller/publish_film.html')
-browser.find_element_by_id('pName').send_keys(moviename)
-browser.find_element_by_id('pEName').send_keys(movieothername)
+def publishMovieinfo():
+    browser.find_element_by_id('pName').send_keys(moviename)
+    browser.find_element_by_id('pEName').send_keys(movieothername)
 
-# 自主版权
-browser.find_element_by_xpath('//*[@id="select05001"]').click()
-# # 代理版权独家
-# browser.find_element_by_xpath('//*[@id="select05002"]').click()
-# # 代理版权非独家
-# browser.find_element_by_xpath('//*[@id="select05003"]').click()
-# 可授权力
-browser.find_element_by_xpath('//*[@id="filmlist-info"]/ul[1]/li[3]/div/div[3]/div[1]/label[1]').click()
-browser.find_element_by_xpath('//*[@id="filmlist-info"]/ul[1]/li[3]/div/div[3]/div[1]/label[3]').click()
-browser.find_element_by_xpath('//*[@id="filmlist-info"]/ul[1]/li[3]/div/div[3]/div[1]/label[2]').click()
-browser.find_element_by_xpath('//*[@id="start_time"]').send_keys(copyrightstart)
-browser.find_element_by_xpath('//*[@id="end_time"]').send_keys(copyrightend)
-# 可授权地区
-browser.find_element_by_xpath('//*[@id="filmlist-info"]/ul[1]/li[3]/div/div[5]/div[1]/label[1]').click()
-browser.find_element_by_xpath('//*[@id="filmlist-info"]/ul[1]/li[3]/div/div[5]/div[1]/label[2]').click()
-browser.find_element_by_xpath('//*[@id="filmlist-info"]/ul[1]/li[3]/div/div[5]/div[1]/label[3]').click()
-browser.find_element_by_xpath('//*[@id="filmlist-info"]/ul[1]/li[3]/div/div[5]/div[1]/label[4]').click()
-browser.find_element_by_xpath('//*[@id="filmlist-info"]/ul[1]/li[3]/div/div[5]/div[1]/label[5]').click()
-browser.find_element_by_xpath('//*[@id="filmlist-info"]/ul[1]/li[3]/div/div[5]/div[1]/label[6]').click()
-# 收益模式
-browser.find_element_by_xpath('//*[@id="filmlist-info"]/ul[1]/li[3]/div/div[6]/div[1]/div[1]/label').click()
-browser.find_element_by_xpath('//*[@id="filmlist-info"]/ul[1]/li[3]/div/div[6]/div[1]/div[2]/label').click()
-browser.find_element_by_xpath('//*[@id="filmlist-info"]/ul[1]/li[3]/div/div[6]/div[1]/div[3]/label').click()
-browser.find_element_by_xpath('//*[@id="filmlist-info"]/ul[1]/li[3]/div/div[6]/div[1]/div[4]/label').click()
-browser.find_element_by_xpath('//*[@id="filmlist-info"]/ul[1]/li[3]/div/div[6]/div[1]/div[5]/label').click()
-# 拍摄许可证
-browser.find_element_by_xpath("//*[@id='file_produce']").click()
-browser.find_element_by_xpath('//*[@id="file_produce"]').send_keys(fileshoot)
-# 公映许可证
-browser.find_element_by_xpath('//*[@id="file_play"]').click()
-browser.find_element_by_xpath('//*[@id="file_play"]').send_keys(filescreen)
+    # 自主版权
+    browser.find_element_by_xpath('//*[@id="select05001"]').click()
+    # # 代理版权独家
+    # browser.find_element_by_xpath('//*[@id="select05002"]').click()
+    # # 代理版权非独家
+    # browser.find_element_by_xpath('//*[@id="select05003"]').click()
+    # 可授权力
+    browser.find_element_by_xpath('//*[@id="filmlist-info"]/ul[1]/li[3]/div/div[3]/div[1]/label[1]').click()
+    browser.find_element_by_xpath('//*[@id="filmlist-info"]/ul[1]/li[3]/div/div[3]/div[1]/label[3]').click()
+    browser.find_element_by_xpath('//*[@id="filmlist-info"]/ul[1]/li[3]/div/div[3]/div[1]/label[2]').click()
+    browser.find_element_by_xpath('//*[@id="start_time"]').send_keys(copyrightstart)
+    browser.find_element_by_xpath('//*[@id="end_time"]').send_keys(copyrightend)
+    # 可授权地区
+    browser.find_element_by_xpath('//*[@id="filmlist-info"]/ul[1]/li[3]/div/div[5]/div[1]/label[1]').click()
+    browser.find_element_by_xpath('//*[@id="filmlist-info"]/ul[1]/li[3]/div/div[5]/div[1]/label[2]').click()
+    browser.find_element_by_xpath('//*[@id="filmlist-info"]/ul[1]/li[3]/div/div[5]/div[1]/label[3]').click()
+    browser.find_element_by_xpath('//*[@id="filmlist-info"]/ul[1]/li[3]/div/div[5]/div[1]/label[4]').click()
+    browser.find_element_by_xpath('//*[@id="filmlist-info"]/ul[1]/li[3]/div/div[5]/div[1]/label[5]').click()
+    browser.find_element_by_xpath('//*[@id="filmlist-info"]/ul[1]/li[3]/div/div[5]/div[1]/label[6]').click()
+    # 收益模式
+    browser.find_element_by_xpath('//*[@id="filmlist-info"]/ul[1]/li[3]/div/div[6]/div[1]/div[1]/label').click()
+    browser.find_element_by_xpath('//*[@id="filmlist-info"]/ul[1]/li[3]/div/div[6]/div[1]/div[2]/label').click()
+    browser.find_element_by_xpath('//*[@id="filmlist-info"]/ul[1]/li[3]/div/div[6]/div[1]/div[3]/label').click()
+    browser.find_element_by_xpath('//*[@id="filmlist-info"]/ul[1]/li[3]/div/div[6]/div[1]/div[4]/label').click()
+    browser.find_element_by_xpath('//*[@id="filmlist-info"]/ul[1]/li[3]/div/div[6]/div[1]/div[5]/label').click()
+    # 拍摄许可证
+    browser.find_element_by_xpath("//*[@id='file_produce']").click()
+    browser.find_element_by_xpath('//*[@id="file_produce"]').send_keys(fileshoot)
+    # 公映许可证
+    browser.find_element_by_xpath('//*[@id="file_play"]').click()
+    browser.find_element_by_xpath('//*[@id="file_play"]').send_keys(filescreen)
 
-browser.find_element_by_xpath('//*[@id="filmlist-info"]/ul[1]/li[4]/div/div[1]/div[1]/label').click()
+    browser.find_element_by_xpath('//*[@id="filmlist-info"]/ul[1]/li[4]/div/div[1]/div[1]/label').click()
 
-# 电影题材：共计3行6列，只需要改动倒数第一个[行]和倒数第二个[列]
-browser.find_element_by_xpath('//*[@id="filmlist-info"]/ul[1]/li[4]/div/div[2]/div[2]/div[1]/label[1]').click()
-browser.find_element_by_xpath('//*[@id="filmlist-info"]/ul[1]/li[4]/div/div[2]/div[2]/div[1]/label[2]').click()
-browser.find_element_by_xpath('//*[@id="filmlist-info"]/ul[1]/li[4]/div/div[2]/div[2]/div[2]/label[1]').click()
+    # 电影题材：共计3行6列，只需要改动倒数第一个[行]和倒数第二个[列]
+    browser.find_element_by_xpath('//*[@id="filmlist-info"]/ul[1]/li[4]/div/div[2]/div[2]/div[1]/label[1]').click()
+    browser.find_element_by_xpath('//*[@id="filmlist-info"]/ul[1]/li[4]/div/div[2]/div[2]/div[1]/label[2]').click()
+    browser.find_element_by_xpath('//*[@id="filmlist-info"]/ul[1]/li[4]/div/div[2]/div[2]/div[2]/label[1]').click()
 
-# 制片地区:中国
-browser.find_element_by_xpath('//*[@id="filmlist-info"]/ul[1]/li[4]/div/div[3]/div[1]/label[1]').click()
+    # 制片地区:中国
+    browser.find_element_by_xpath('//*[@id="filmlist-info"]/ul[1]/li[4]/div/div[3]/div[1]/label[1]').click()
 
-browser.find_element_by_xpath('//*[@id="director"]').send_keys(director)
-browser.find_element_by_xpath('//*[@id="tostar"]').send_keys(artistor)
+    browser.find_element_by_xpath('//*[@id="director"]').send_keys(director)
+    browser.find_element_by_xpath('//*[@id="tostar"]').send_keys(artistor)
 
-browser.find_element_by_xpath('//*[@id="film_time"]').send_keys(timeline)
-browser.find_element_by_xpath('//*[@id="timeBirth"]').send_keys(releasetime)
-browser.find_element_by_xpath('//*[@id="filmlist-info"]/ul[1]/li[4]/div/div[10]/input').send_keys(moviediscrib)
-browser.find_element_by_xpath('//*[@id="filmlist-info"]/ul[1]/li[4]/div/div[11]/textarea').send_keys(abstract)
+    browser.find_element_by_xpath('//*[@id="film_time"]').send_keys(timeline)
+    browser.find_element_by_xpath('//*[@id="timeBirth"]').send_keys(releasetime)
+    browser.find_element_by_xpath('//*[@id="filmlist-info"]/ul[1]/li[4]/div/div[10]/input').send_keys(moviediscrib)
+    browser.find_element_by_xpath('//*[@id="filmlist-info"]/ul[1]/li[4]/div/div[11]/textarea').send_keys(abstract)
 
-# 价格设置
-for i in range(1,4):
-    Select(browser.find_element_by_xpath("//*[@id='product_system']")).select_by_value("0400"+str(i))
-    for j in range(1,6):
-        Select(browser.find_element_by_xpath("//*[@id='product_buy']")).select_by_value("0900"+str(j))
-        try:
-            browser.find_element_by_xpath("//*[@id='product_price']").send_keys(perprice)
-        except:
-            pass
-        browser.find_element_by_xpath("//*[@id='submit_price']").click()
-        sleep(0.2)
+    # 价格设置
+    for i in range(1, 4):
+        Select(browser.find_element_by_xpath("//*[@id='product_system']")).select_by_value("0400" + str(i))
+        for j in range(1, 6):
+            Select(browser.find_element_by_xpath("//*[@id='product_buy']")).select_by_value("0900" + str(j))
+            try:
+                browser.find_element_by_xpath("//*[@id='product_price']").send_keys(perprice)
+            except:
+                pass
+            browser.find_element_by_xpath("//*[@id='submit_price']").click()
+            sleep(0.2)
 
-browser.find_element_by_xpath('//*[@id="no-inventory"]').click()
+    browser.find_element_by_xpath('//*[@id="no-inventory"]').click()
 
-# 海报
-browser.find_element_by_xpath('//*[@id="filmlist-info"]/ul[1]/li[9]/div[1]/div/div/div/div[2]/div/a').click()
-browser.find_element_by_xpath('//*[@id="filmlist-info"]/ul[1]/li[9]/div[1]/div/div/div/div[2]/div/input[1]').send_keys(poster)
+    # 海报
+    browser.find_element_by_xpath('//*[@id="filmlist-info"]/ul[1]/li[9]/div[1]/div/div/div/div[2]/div/a').click()
+    browser.find_element_by_xpath(
+        '//*[@id="filmlist-info"]/ul[1]/li[9]/div[1]/div/div/div/div[2]/div/input[1]').send_keys(poster)
 # 正片文件
 browser.find_element_by_xpath("//*[@id='filmlist-info']/ul[1]/li[9]/div[3]/div/div/a[1]").click()
-Select('//*[@id="feature_file"]').select_by_value('17002')
-browser.find_element_by_xpath("//*[@id='full-tip']/section/div[1]/div[5]/div[1]/span[3]/a/input").send_keys()
+Select(browser.find_element_by_xpath('//*[@id="feature_file"]')).select_by_value('17002')
+
+browser.find_element_by_xpath('//*[@id="04001-10001"]').click()
+try:
+    browser.find_element_by_xpath('//*[@id="material_box"]/div[1]/div/div[1]/div/input').send_keys(movienum)
+except:
+    pass
+browser.find_element_by_xpath('//*[@id="04002-10012"]').click()
+browser.find_element_by_xpath('//*[@id="full-tip"]/section/div[1]/div[5]/div[1]/span[3]/a').click()
+browser.find_element_by_xpath("//*[@id='full-tip']/section/div[1]/div[5]/div[1]/span[3]/a/input").send_keys(sourcefile)
+going = browser.find_element_by_xpath('//*[@id="full-tip"]/section/div[1]/div[5]/div[2]/div/table/tbody/tr/td[5]')
+print(going)
 
 # 确认正片
-browser.find_element_by_xpath("//*[@id='full-tip']/section/div[2]/a[1]").click()
+# browser.find_element_by_xpath("//*[@id='full-tip']/section/div[2]/a[1]").click()
 
 # browser.find_element_by_xpath('').send_keys()
