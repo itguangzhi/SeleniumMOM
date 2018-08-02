@@ -163,8 +163,7 @@ except:
 browser.find_element_by_xpath('//*[@id="04002-10012"]').click()
 browser.find_element_by_xpath('//*[@id="full-tip"]/section/div[1]/div[5]/div[1]/span[3]/a').click()
 browser.find_element_by_xpath("//*[@id='full-tip']/section/div[1]/div[5]/div[1]/span[3]/a/input").send_keys(sourcefile)
-going = browser.find_element_by_xpath('//*[@id="full-tip"]/section/div[1]/div[5]/div[2]/div/table/tbody/tr/td[5]')
-print(going)
+
 
 # 确认正片
 # browser.find_element_by_xpath("//*[@id='full-tip']/section/div[2]/a[1]").click()
