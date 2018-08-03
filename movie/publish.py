@@ -40,10 +40,8 @@
 # @Desc  : 发布影视作品
 
 from time import sleep
-
 from selenium import webdriver
 from selenium.webdriver.support.select import Select
-
 import ReleaseInfo
 
 name = ReleaseInfo.UserInfo.username
@@ -151,6 +149,7 @@ def publishMovieinfo():
     browser.find_element_by_xpath('//*[@id="filmlist-info"]/ul[1]/li[9]/div[1]/div/div/div/div[2]/div/a').click()
     browser.find_element_by_xpath(
         '//*[@id="filmlist-info"]/ul[1]/li[9]/div[1]/div/div/div/div[2]/div/input[1]').send_keys(poster)
+publishMovieinfo()
 # 正片文件
 browser.find_element_by_xpath("//*[@id='filmlist-info']/ul[1]/li[9]/div[3]/div/div/a[1]").click()
 Select(browser.find_element_by_xpath('//*[@id="feature_file"]')).select_by_value('17002')
@@ -163,9 +162,16 @@ except:
 browser.find_element_by_xpath('//*[@id="04002-10012"]').click()
 browser.find_element_by_xpath('//*[@id="full-tip"]/section/div[1]/div[5]/div[1]/span[3]/a').click()
 browser.find_element_by_xpath("//*[@id='full-tip']/section/div[1]/div[5]/div[1]/span[3]/a/input").send_keys(sourcefile)
+tme = browser.find_element_by_xpath('//*[@id="full-tip"]/section/div[1]/div[5]/div[2]/div/table/tbody/tr/td[5]').text
+while True:
+    if tme == '100%':
+        print('上传完成')
 
+        # 确认正片
+        browser.find_element_by_xpath("//*[@id='full-tip']/section/div[2]/a[1]").click()
+        # win32api.keybd_event(86, 0, 0, 0)
+        break
+    else:sleep(2)
 
-# 确认正片
-# browser.find_element_by_xpath("//*[@id='full-tip']/section/div[2]/a[1]").click()
 
 # browser.find_element_by_xpath('').send_keys()
